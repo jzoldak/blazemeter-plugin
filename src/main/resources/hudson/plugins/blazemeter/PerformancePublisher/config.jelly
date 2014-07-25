@@ -87,6 +87,7 @@
         <f:entry title="${%Test Duration}:"
                  field="testDuration">
             <select name="testDuration">
+                <f:option value="5" selected="${'5'==instance.testDuration}">${%5 Minutes}</f:option>
                 <f:option value="20" selected="${'20'==instance.testDuration}">${%20 Minutes}</f:option>
                 <f:option value="30" selected="${'30'==instance.testDuration}">${%30 Minutes}</f:option>
                 <f:option value="40" selected="${'40'==instance.testDuration}">${%40 Minutes}</f:option>
