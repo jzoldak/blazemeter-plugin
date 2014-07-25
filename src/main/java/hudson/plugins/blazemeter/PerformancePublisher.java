@@ -242,6 +242,7 @@ public class PerformancePublisher extends Notifier {
         do {
             logger.print(".");
             json = bmAPI.startTest(apiKey, testId);
+
             countStartRequests++;
             if (json == null && countStartRequests > 5) {
                 logger.println("Could not start BlazeMeter Test");
@@ -249,6 +250,10 @@ public class PerformancePublisher extends Notifier {
                 return false;
             }
         } while (json == null);
+
+        //session_id will also be the report_id for the testGetReport API call
+        logger.println();
+        logger.println("startTest_response = " + json.toString());
 
         try {
             if (!json.get("response_code").equals(200)) {
@@ -376,6 +381,7 @@ public class PerformancePublisher extends Notifier {
             return false;
         }
 
+        logger.println("aggregate_results = " + aggregate);
         AggregateTestResult aggregateTestResult = AggregateTestResult.generate(aggregate);
 
         if (aggregateTestResult == null) {
